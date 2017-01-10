@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
    
    before_action :set_task, only: [:edit, :update, :show]
-   #before_action :require_user 
-  # before_action :require_same_user, only: [:show, :edit, :update]
-   #before_action :require_admin, only: [:record, :destroy]
+   before_action :require_user 
+   before_action :require_same_user, only: [:show, :edit, :update]
+   #before_action :require_admin, only: [:destroy]
    
    def index
        @tasks = Task.all.order('task_name ASC')
@@ -52,9 +52,9 @@ class TasksController < ApplicationController
     end
 
    def require_same_user
-    if current_user != @reading.user && !current_user.admin?
-      flash[:danger] = "You can only view and edit your own readings"
-      redirect_to readings_path
+    if current_user != @task.user && !current_user.admin?
+      flash[:danger] = "You can only view and edit your own tasks"
+      redirect_to tasks_path
     end
    end
    

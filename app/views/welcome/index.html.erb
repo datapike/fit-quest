@@ -1,3 +1,12 @@
-<h1>Welcome to the Fit Quest App</h1>
-
-<%= link_to "logout", destroy_user_session_path, method: :delete %>
+<div class="center jumbotron">
+  <div class="container">
+    <h1>Welcome to Fit Quest</h1>
+    <% if !signed_in? %>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary btn-white-text" %>
+    <%= link_to "Register", new_user_registration_path, class: "btn btn-lg btn-success btn-white-text" %>
+    <% end %>
+    <% if signed_in? %>
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-lg btn-danger btn-white-text" %>
+    <% end %>
+  </div>
+</div>
