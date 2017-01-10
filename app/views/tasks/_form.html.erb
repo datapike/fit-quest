@@ -1,0 +1,17 @@
+<%= render 'shared/errors', obj: @task %>
+
+<div class="row">
+    <div class="col-md-6 well">
+        <h4>Enter Task Information:</h4>
+        <%= form_for @task do |f| %>
+            <%= f.label :task_name, "Task Name:" %>
+            <%= f.text_field :task_name %>
+            <br>
+            <%= f.label :task_points, "Task Points:" %>
+            <%= f.number_field :task_points %>
+            <br>
+            <%= f.submit (@task.new_record? ? 'Submit Task' : 'Edit Task'), class: "btn btn-success" %>
+        <% end %>
+            
+    </div>
+</div>
