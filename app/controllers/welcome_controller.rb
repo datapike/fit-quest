@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
   end
   
   def home
-    
+    @user = current_user
   end
   
 end

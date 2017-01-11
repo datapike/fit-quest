@@ -1,8 +1,19 @@
 <div class="center jumbotron">
   <div class="container">
     <h1>Welcome to Fit Quest</h1>
+    <% if current_user.admin? %>
     <%= link_to "Enter New Tasks", new_task_path, class: "center btn btn-primary btn-white-text" %>
-    
+    <% end %>
   </div>
+</div>
+
+<div class="center">
+  <h2>Your Stats</h2>
+  Level: <%= @user.level %><br>
+  XP: <%= @user.xp %><br>
+  Health: <%= @user.health %><br>
+  Mana: <%= @user.mana %><br>
+  Attack: <%= @user.attack %><br>
+  Defense: <%= @user.defense %><br>
 </div>
 

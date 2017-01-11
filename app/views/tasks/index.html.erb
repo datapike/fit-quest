@@ -1,10 +1,13 @@
 <div class="container">
 <h1>All Tasks</h1>
 <hr/>
+<% if current_user.admin? %>
 <div class="">
 <%= link_to "Enter New Tasks", new_task_path, class: "btn btn-primary btn-white-text" %>
 </div>
 <br>
+<% end %>
+
 <% @tasks.each do |task| %>
     
     <div class="row">
@@ -13,11 +16,20 @@
         <div class="col-xs-6">
             <h4><%= task.task_name %></h4>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <h4>Points: <%= task.task_points %></h4>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-4">
+            <%= form_tag complete_path(task, @user) do %>
+  <%= hidden_field_tag :xp, task.task_points %>
+  <%= submit_tag 'Complete Task', class: "btn btn-success" %>
+<% end %>
+
+            
+            
+            <% if signed_in? && current_user.try(:admin?) %>
             <%= link_to "Edit Task", edit_task_path(task), class: "center btn btn-warning btn-white-text" %>
+            <% end %>
         </div>
         <br>
         <br><hr />
