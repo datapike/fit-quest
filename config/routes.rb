@@ -3,25 +3,13 @@ Rails.application.routes.draw do
   
   devise_scope :user do
     get 'users/sign_out', to: 'devise/sessions#destroy', as: :signout
-    
   end
-  root 'welcome#index'
-  get '/home', to: 'welcome#home'
-   resources :tasks, except: [:destroy, :show]
- # resources :users do
-   # member do
-   #   patch :update_xp
-  #  end
-#  end
- 
-  get '/tasks/:id/complete' => 'tasks#complete', :as => 'complete'
-  post '/tasks/:id/complete' => 'tasks#complete'
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  
+  root 'welcome#index'
+  get '/home', to: 'welcome#home'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -29,7 +17,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-   
+    resources :tasks, except: [:destroy, :show]
 
   # Example resource route with options:
   #   resources :products do
