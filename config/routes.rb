@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
     resources :tasks, except: [:destroy, :show]
+    
+  get '/tasks/:id/complete' => 'tasks#complete', :as => 'complete'
+  post '/tasks/:id/complete' => 'tasks#complete'
+  
 
   # Example resource route with options:
   #   resources :products do
